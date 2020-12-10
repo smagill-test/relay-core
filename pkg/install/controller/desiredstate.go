@@ -36,6 +36,11 @@ func setDeploymentLabels(labels map[string]string, deployment *appsv1.Deployment
 	}
 }
 
+// FIXME For now, provide an expected default value
+func logServiceURL(rc *installerv1alpha1.RelayCore) string {
+	return fmt.Sprintf("%s-log-service.%s:7050", rc.Name, rc.Namespace)
+}
+
 func metadataAPIURL(rc *installerv1alpha1.RelayCore) string {
 	if rc.Spec.MetadataAPI.URL != nil {
 		return *rc.Spec.MetadataAPI.URL
